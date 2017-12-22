@@ -1,7 +1,10 @@
 #ifndef _SNAKE_GAME_H_
 #define _SNAKE_GAME_H_
 
-#include <stdio.h>
+// #include <stdio.h>
+#include <iostream>
+#include <vector>
+
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
@@ -12,6 +15,9 @@
 #include "defines.h"
 #include "utils.h"
 
+using std::string;
+using std::vector;
+
 class Game
 {
 	public:
@@ -21,7 +27,6 @@ class Game
 		bool generateGamePlace(const int x, const int y);
 	private:
 		void update();
-		//void judge();
 		void processInput();
 		int getInput();
 		
@@ -30,13 +35,33 @@ class Game
 		class Timer
 		{
 			public:
-				float start, end, elapsed;
-				void timeStart();
-				void timeEnd();
-				Timer() : start(0.f), end(0.f), elapsed(0.f) 
-				{} 
+				class Timecell
+				{
+					public:
+						float start, end, elapsed;
+						void timeStart();
+						void timeEnd();
+						float getElapsed();
+						Timecell() : start(0.f), end(0.f), elapsed(0.f) 
+						{}
+				};
+
+				enum Timer_Type
+				{
+					TIMER_COUNTDOWN,
+					TIMER_COUNTUP
+				};
+				// Functions
+				Timer();
+				// ~Timer();
+				void addTimer(const char timerName[], const int type);
+				float getNowTime(const char timerName[]);
+			private:
+				vector<Timecell> timerList;
+				vector<string> timerName;
+				float nowTime;
 		}timer;
-		
+
 		class Snake;
 		struct Food;
 		class Screen

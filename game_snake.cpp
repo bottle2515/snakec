@@ -92,7 +92,7 @@ void Game::Snake::update(const int h, const int w, Food &food, Game &game) //TOD
 {
 	int updateX = b_head->x,
 		updateY = b_head->y;
-	if(getDead())
+	if(getDead()) // What the hell with this line??
 	{
 		setDirection(DIR_NONE);
 	}
@@ -122,12 +122,10 @@ void Game::Snake::update(const int h, const int w, Food &food, Game &game) //TOD
 			/* The snake move one block */
 			addSnakeHead(updateX, updateY);
 			pop_back();
-//			return false;
 		}
 		if(result == JUDGE_EAT)
 		{
 			//pop_back(); // because the head has appened a new head (food.x, food.y), so it doesn't need to pop_back()
-//			return true;
 		}
 	}
 }
@@ -158,39 +156,17 @@ int Game::Snake::judge(const int h, const int w, Food &food, Game &game, const i
 	}
 	
 	bool eaten = false;
-	
-	// Snake eats the food
-	/*switch(direction)
-	{
-		case DIR_UP:
-			if(ux == food.x && uy + 1 == food.y)
-			{
-				
-				eaten = true;
-			}
-			break;
-		case DIR_DOWN:
-			if(ux == food.x && uy - 1 == food.y)
-			{
-				
-				eaten = true;
-			}
-			break;
-		case DIR_LEFT:
-			if(ux - 1 == food.x && uy == food.y)
-			{
-				
-				eaten = true;
-			}
-			break;
-		case DIR_RIGHT:
-			if(ux + 1 == food.x && uy == food.y)
-			{
+	// Snake hit itself
+	// Snake_Body *i = getHead()->next;
+	// for(;i->next != NULL; i = i->next)
+	// {
+	// 	// Snake's head hit its body
+	// 	if(getHead()->x == i->x && getHead()->y == i->y)
+	// 	{
 
-				eaten = true;
-			}
-			break;
-	}*/
+	// 	}
+	// }
+	// Snake eats the food
 	if(ux == food.x && uy == food.y)
 	{
 		eaten = true;

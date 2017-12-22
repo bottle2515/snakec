@@ -1,8 +1,8 @@
 #ifndef _DEFINES_H_
 #define _DEFINES_H_
 
-#define WIDTH 10
-#define HEIGHT 5
+#define WIDTH 20
+#define HEIGHT 15
 
 #define DEBUG 1
 
